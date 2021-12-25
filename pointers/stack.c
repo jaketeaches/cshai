@@ -18,14 +18,12 @@ struct Stack new_stack()
     return stack;
 }
 
-int push(struct Stack *stack, int value)
+void push(struct Stack *stack, int value)
 {
     struct StackElem *new_elem = malloc(sizeof(struct StackElem));
     new_elem->value            = value;
     new_elem->_next            = stack->_first;
     stack->_first              = new_elem;
-
-    return 0;
 }
 
 int pop(struct Stack *stack)
@@ -57,10 +55,19 @@ int peek(struct Stack *stack)
 int main()
 {
     struct Stack stack = new_stack();
+
+    // Push thrice
     push(&stack, 1);
     push(&stack, 2);
     push(&stack, 3);
+
+    // Pop all elements
     printf("%d\n", pop(&stack));
     printf("%d\n", pop(&stack));
     printf("%d\n", pop(&stack));
+
+    // Attempt to pop once more
+    printf("%d\n", pop(&stack));
+
+    return 0;
 }
